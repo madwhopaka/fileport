@@ -1,0 +1,45 @@
+:root {
+  --main-bg-color:  #282C35; 
+  --border-color: #fff44f70; 
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+body{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif; 
+  background: var(--main-bg-color);
+  height: 100vh;
+  padding:0; 
+  align-items: center;
+  justify-content: center;
+  margin:0 ; 
+}
+
+.upload-container {
+  
+  background: mediumslateblue;
+  border-radius: 25px ;
+  box-shadow: 0 20px 20px #0000002e;
+ 
+}
+
+.simpletext {
+  color:"yellow";
+  font-family:"Poppins", sans-serif;
+}
+.dropzone {
+  border : 2px dashed var(--border-color) ;
+  border-radius: 10px ;
+}
+
+img{
+  
+  transition: ease-in-out 0.5s;
+
+}
+
+img:hover {
+    transform: translateY(-10px);
+}
