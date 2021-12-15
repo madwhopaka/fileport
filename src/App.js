@@ -7,7 +7,7 @@ import Context from '@mui/base/TabsUnstyled/TabsContext';
 function App() {
   return (
     <Grid container>
-     <Card className= "upload-container" sx = {{background:"mediumslateblue", borderRadius: "25px"}}>
+     <Card className= "upload-container" sx = {{ borderRadius: "25px"}}>
      <UploadContainer />
      </Card>
     </Grid>
