@@ -12,7 +12,7 @@ export const ProgressBar = (props) => {
   }, [props.percent]); 
     return (
       <>
-      {props.percent>0?    <div className="progress-container">   
+      {props.percent!=null && props.showProgressBar==true?    <div className="progress-container">   
       <div style = {{width: `${props.percent}%`, transition: "width .25s linear", display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}} className = 'bg-progress'> 
       <div className= "percent" style = {{marginLeft:30, fontSize: "15px", display:"flex"}}>{props.percent}% </div>   
       </div>
