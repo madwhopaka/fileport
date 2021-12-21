@@ -163,10 +163,16 @@ export const UploadContainer = ({showDocumentation}) => {
     e.stopPropagation(); 
      console.log(e.target.files)  ; 
      if (e.target.files) {
-       var file= e.target.files[0] ;  
-        uploadFile(file); 
+       var file= e.target.files[0] ;
+       if (file.size<=maxAllowedSize)
+       { console.log(file.size); 
+          
+         uploadFile(file);
+       }  
+       else {
+         setEror("File size exceded") ; 
+       }
      }
-    // var files = e.dataTransfer.files ; 
    
   }
 
