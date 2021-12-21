@@ -12,10 +12,11 @@ import {SnackBar} from './SnackBar.js'  ;
 const host = "https://cloud-share-server.herokuapp.com";
 const uploadUrl = `${host}/api/files`;
 
-export const UploadContainer = () => {
+export const UploadContainer = ({showDocumentation}) => {
   var uploadcont = document.querySelector(".upload-container");
   var dropzone = document.querySelector(".dropzone");
   var img1 = document.querySelector(".image");
+  var documentation = document.querySelector("#documentation"); 
   var hiddenFileInput = React.useRef(null);
   const [progressPercent, setProgressPercent] = useState(null);
   const [showProgressBar, ToggleProgressBar] = useState(false);
@@ -35,6 +36,8 @@ export const UploadContainer = () => {
 
 
     } 
+   documentation = document.querySelector("#documentation"); 
+    console.log(documentation) ; 
     img1 = document.querySelector(".image");
     dropzone = document.querySelector(".dropzone");
     console.log(dropzone);
@@ -106,10 +109,12 @@ export const UploadContainer = () => {
   };
 
   function uploadFile(file) {
-    
+    documentation.style.display = "none" ; 
+    showDocumentation(false); 
     setFileName(file.name);
     const formData = new FormData();
     formData.append("myfile", file);
+    
     ToggleProgressBar(true);
     try {
       const xhr = new XMLHttpRequest();

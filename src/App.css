@@ -2,7 +2,10 @@
   --main-bg-color:  #282C35; 
   --border-color: #fff44f70; 
   --container-width: 500px; 
+  
 }
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 body{
@@ -11,11 +14,11 @@ body{
   flex-direction: column;
   font-family: 'Poppins', sans-serif; 
   background: var(--main-bg-color);
-  height: 100vh;
   padding:0; 
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+ 
+ 
 }
 
 .upload-container {
@@ -202,12 +205,13 @@ font-weight: bold;
 
 @media screen and (max-width: 500px) {
   :root {
-    overflow-x: hidden;
+   
     --container-width:  220px ;
   }
 
   body {
-      margin: 20px ;
+      margin: 60px ;
+   
   }
   .upload-container {
    min-height: 200px  ;
@@ -226,4 +230,17 @@ font-weight: bold;
   .lower-cont {
     margin:0 ; 
   }
+  
+  .simpletext {
+    font-size:12px; 
+  }
+}
+
+
+#documentation {
+  transition: linear ease-in
+}
+
+.documenti {
+  display:none; 
 }
