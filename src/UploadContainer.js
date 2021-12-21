@@ -21,15 +21,17 @@ export const UploadContainer = () => {
   const [showProgressBar, ToggleProgressBar] = useState(false);
   const [fileLink, setFileLink] = useState(null);
   const [fileName, setFileName] = useState(null);
-  const [error ,setError] = useState(null) ; 
+  const [eror, setEror] = useState(null) ; 
   const maxAllowedSize = 1024*1024*100;
 
   useEffect(() => {
-   if ( !window.navigator.onLine && showProgressBar)  {
-      ToggleProgressBar(0); 
+   if ( window.navigator.onLine==false && showProgressBar)  {
+     console.log(eror) ; 
+     console.log(window.navigator.onLine) ; 
+      ToggleProgressBar(false); 
       setProgressPercent(0) ;
       setFileLink(null); 
-      setError("Internet Disconnected"); 
+      setEror("Internet Disconnected"); 
 
 
     } 
@@ -75,24 +77,32 @@ export const UploadContainer = () => {
     if (e.dataTransfer.files.length != undefined) {
       console.log(e.dataTransfer.files.length);
       var files = e.dataTransfer.files;
-      if (files) {
-        console.log(files);
-      }
       if (window.navigator.onLine) {
         const file = files[0];
-        if (file.size<=maxAllowedSize) 
+        if (file.size<=maxAllowedSize)
+       { console.log(file.size); 
+         ToggleProgressBar(true); 
          uploadFile(file);
+       }
         else 
-          setError("Max size limit : 100MB") ;
+          {
+            console.log(file.size) ;
+            setEror("Max size limit : 100MB") ;
+            console.log(eror) ; 
+          }
       }
       else {
-        setError('No internet'); 
+        
+        setEror('No internet'); 
+        console.log(eror) ; 
       }
     }
   };
 
-  const handleClick = (event) => {
-    hiddenFileInput.current.click();
+  const  handleClick = async (event) => {
+   await hiddenFileInput.current.click();
+   console.log(hiddenFileInput); 
+
   };
 
   function uploadFile(file) {
@@ -117,7 +127,7 @@ export const UploadContainer = () => {
           ToggleProgressBar(false) ; 
           setProgressPercent(0) ; 
           setFileLink(null) ; 
-          setError(`Upload Error: ${xhr.statusText}`); 
+          setEror(`Upload Error: ${xhr.statusText}`); 
         }
        
       };
@@ -126,13 +136,13 @@ export const UploadContainer = () => {
         ToggleProgressBar(false) ; 
         setProgressPercent(0) ; 
         setFileLink(null) ; 
-        setError(`Upload Error: ${xhr.statusText}`); 
+        setEror(`Upload Error: ${xhr.statusText}`); 
       }
       xhr.open("POST", uploadUrl);
       xhr.send(formData);
-      ToggleProgressBar(true);
+     
     } catch (err) {
-      setError(`Upload Error: ConnectionError `) ;  
+      setEror(`Upload Error: ConnectionError `) ;  
       console.log(err);
     }
   }
@@ -227,7 +237,7 @@ export const UploadContainer = () => {
         showProgressBar={showProgressBar}
       />
       <LinkContainer fileLink={fileLink} />
-      <SnackBar error = {error} />
+      <SnackBar error = {eror} />
     </div>
   );
 };

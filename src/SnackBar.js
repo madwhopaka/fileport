@@ -52,7 +52,7 @@ export const SnackBar = (props) => {
         open={open}
         autoHideDuration={4000}
         onClose={handleClose}
-        message= {props.error}
+        message= {error}
         action={action}
       />
   </div>;
