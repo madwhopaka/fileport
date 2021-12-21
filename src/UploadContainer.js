@@ -9,7 +9,7 @@ import {Sharebutton} from './ShareButton.js';
 import {SnackBar} from './SnackBar.js'  ;
 
 
-const host = "https://cors-anywhere.herokuapp.com/https://cloud-share-server.herokuapp.com";
+const host = "https://cloud-share-server.herokuapp.com";
 const uploadUrl = `${host}/api/files`;
 
 export const UploadContainer = () => {
