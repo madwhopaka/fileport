@@ -211,12 +211,9 @@ font-weight: bold;
     --container-width:  220px ;
   }
 
-  body {
-      margin: 60px ;
-   
-  }
+ 
   .upload-container {
-    margin:50px  ;
+    margin-top:50px  ;
    min-height: 200px  ;
   }
 
