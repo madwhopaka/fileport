@@ -81,7 +81,7 @@ export const UploadContainer = () => {
         const file = files[0];
         if (file.size<=maxAllowedSize)
        { console.log(file.size); 
-         ToggleProgressBar(true); 
+          
          uploadFile(file);
        }
         else 
@@ -110,7 +110,7 @@ export const UploadContainer = () => {
     setFileName(file.name);
     const formData = new FormData();
     formData.append("myfile", file);
-
+    ToggleProgressBar(true);
     try {
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = () => {
@@ -158,8 +158,7 @@ export const UploadContainer = () => {
     e.stopPropagation(); 
      console.log(e.target.files)  ; 
      if (e.target.files) {
-       var file= e.target.files[0] ; 
-       
+       var file= e.target.files[0] ;  
         uploadFile(file); 
      }
     // var files = e.dataTransfer.files ; 
