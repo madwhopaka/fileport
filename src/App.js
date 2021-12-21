@@ -23,7 +23,7 @@ function App() {
  
   return (
    
-    < Container style= {{display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center" }}>
+    < Container style= {{display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
     <img src={main_logo} alt="Inshare logo" class="logo" />
     <h3 class= "logo-title">CloudShare</h3>
     
