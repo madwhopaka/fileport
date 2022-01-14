@@ -7,7 +7,7 @@ export const ProgressBar = (props) => {
   const [width, setWidth] = useState(0) ; 
   useEffect(() => {
     console.log(props.percent)
-    const bgProgres = document.querySelector(".bg-progress") ;
+    const bgProgres = document.querySelector(".bg-progress") ; //hello whatsup ? 
     console.log(bgProgres); 
   }, [props.percent]); 
     return (
