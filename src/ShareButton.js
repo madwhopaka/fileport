@@ -7,7 +7,7 @@ import {InlineFollowButtons} from 'sharethis-reactjs';
 
 
 export const ShareButton = (props) => {
-    const [fileUrl, setUrl] = useState('www.google.com'); 
+    const [fileUrl, setUrl] = useState(props.url); 
     useEffect(() => {
        setUrl(props.url) 
     }, [props])
