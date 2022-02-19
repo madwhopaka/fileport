@@ -7,6 +7,7 @@ import { ProgressBar } from "./ProgressBar";
 import { LinkContainer } from "./LinkContainer";
 import {Sharebutton} from './ShareButton.js';
 import {SnackBar} from './SnackBar.js'  ;
+import Loading from "./Loading";
 
 
 const host = "https://cloud-share-server.herokuapp.com";
@@ -23,6 +24,7 @@ export const UploadContainer = ({showDocumentation}) => {
   const [fileLink, setFileLink] = useState(null);
   const [fileName, setFileName] = useState(null);
   const [eror, setEror] = useState(null) ; 
+  const [loading, setLoading] = useState(false); 
   const maxAllowedSize = 1024*1024*100;
 
   useEffect(() => {
@@ -44,6 +46,13 @@ export const UploadContainer = ({showDocumentation}) => {
     uploadcont = document.querySelector(".upload-container");
     console.log(hiddenFileInput.files);
   }, [hiddenFileInput.files]);
+
+  
+  useEffect(()=> {
+      setLoading(false);
+
+  },[progressPercent]); 
+  
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -82,6 +91,7 @@ export const UploadContainer = ({showDocumentation}) => {
       var files = e.dataTransfer.files;
       if (window.navigator.onLine) {
         const file = files[0];
+        setLoading(true) ; 
         if (file.size<=maxAllowedSize)
        { console.log(file.size); 
           
@@ -247,7 +257,7 @@ export const UploadContainer = ({showDocumentation}) => {
         showProgressBar={showProgressBar}
       />
       <LinkContainer fileLink={fileLink} />
-      <SnackBar error = {eror} />
+      {loading?<Loading />: <></> }
     </div>
   );
 };
