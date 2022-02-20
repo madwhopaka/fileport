@@ -24,7 +24,8 @@ export const UploadContainer = ({showDocumentation}) => {
   const [fileLink, setFileLink] = useState(null);
   const [fileName, setFileName] = useState(null);
   const [eror, setEror] = useState(null) ; 
-  const [loading, setLoading] = useState(false); 
+  const [loading,setloading] = useState(false) ; 
+  
   const maxAllowedSize = 1024*1024*100;
 
   useEffect(() => {
@@ -48,10 +49,7 @@ export const UploadContainer = ({showDocumentation}) => {
   }, [hiddenFileInput.files]);
 
   
-  useEffect(()=> {
-      setLoading(false);
-
-  },[progressPercent]); 
+  
   
 
   const handleDragOver = (e) => {
@@ -91,7 +89,7 @@ export const UploadContainer = ({showDocumentation}) => {
       var files = e.dataTransfer.files;
       if (window.navigator.onLine) {
         const file = files[0];
-        setLoading(true) ; 
+        
         if (file.size<=maxAllowedSize)
        { console.log(file.size); 
           
@@ -113,18 +111,19 @@ export const UploadContainer = ({showDocumentation}) => {
   };
 
   const  handleClick = async (event) => {
-   await hiddenFileInput.current.click();
-   console.log(hiddenFileInput); 
+   await hiddenFileInput.current.click()
+   
+  
 
   };
 
   function uploadFile(file) {
+    
     documentation.style.display = "none" ; 
     showDocumentation(false); 
     setFileName(file.name);
     const formData = new FormData();
     formData.append("myfile", file);
-    
     ToggleProgressBar(true);
     try {
       const xhr = new XMLHttpRequest();
@@ -133,6 +132,7 @@ export const UploadContainer = ({showDocumentation}) => {
           console.log(xhr.response);
           const link = JSON.parse(xhr.response);
           console.log(link);
+          setloading(false); 
           setFileLink(link.file);
           setTimeout(() => {
             ToggleProgressBar(false);
@@ -153,6 +153,7 @@ export const UploadContainer = ({showDocumentation}) => {
         setFileLink(null) ; 
         setEror(`Upload Error: ${xhr.statusText}`); 
       }
+      setloading(true) ; 
       xhr.open("POST", uploadUrl);
       xhr.send(formData);
      
@@ -257,7 +258,7 @@ export const UploadContainer = ({showDocumentation}) => {
         showProgressBar={showProgressBar}
       />
       <LinkContainer fileLink={fileLink} />
-      {loading?<Loading />: <></> }
+    {loading || progressPercent ==0 ? <Loading />: <></>}
     </div>
   );
 };
