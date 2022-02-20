@@ -132,7 +132,6 @@ export const UploadContainer = ({showDocumentation}) => {
           console.log(xhr.response);
           const link = JSON.parse(xhr.response);
           console.log(link);
-          setloading(false); 
           setFileLink(link.file);
           setTimeout(() => {
             ToggleProgressBar(false);
@@ -165,8 +164,11 @@ export const UploadContainer = ({showDocumentation}) => {
 
   const updateProgress = (e) => {
     const percent = Math.round((e.loaded / e.total) * 100);
-    console.log(percent);
+    if (percent>0) {
+      setloading(false) ; 
+    }
     setProgressPercent(percent);
+   
   };
 
   const handleChange = (e)=> {
@@ -258,7 +260,7 @@ export const UploadContainer = ({showDocumentation}) => {
         showProgressBar={showProgressBar}
       />
       <LinkContainer fileLink={fileLink} />
-    {loading || progressPercent ==0 ? <Loading />: <></>}
+    {loading ? <Loading />: <></>}
     </div>
   );
 };
